@@ -1,0 +1,6 @@
+pandas
+librosa
+hdbscan
+metrics
+numpy
+sklearn
