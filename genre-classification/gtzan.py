@@ -46,13 +46,14 @@ class GenreClassifier:
         model.add(Conv2D(256, kernel_size=(3, 3), activation="relu"))
         model.add(MaxPooling2D(pool_size=(2, 2)))
         model.add(Flatten())
-        model.add(Dense(128, activation="relu"))
+        # model.add(Dense(128, activation="relu"))
         model.add(Reshape((128, -1)))  # Reshape layer
         model.add(LSTM(64, return_sequences=True))  # First LSTM layer
         model.add(LSTM(32))  # Second LSTM layer
         model.add(Dense(10, activation="softmax"))  # 10 genres
         model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=["accuracy"])
         return model
+
     def train_model(self):
         X_train, X_test, y_train, y_test = self.preprocess_data()
         X_train = X_train.reshape(X_train.shape[0], 128, 1292, 1)
